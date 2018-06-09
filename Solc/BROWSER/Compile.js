@@ -7,8 +7,10 @@ Solc.Compile = METHOD((m) => {
 	
 	return {
 		
-		run : (codes, handlers) => {
-			//REQUIRED: codes
+		run : (params, handlers) => {
+			//REQUIRED: params
+			//REQUIRED: params.code
+			//REQUIRED: params.importCodes
 			//REQUIRED: handlers
 			//REQUIRED: handlers.error
 			//REQUIRED: handlers.success
@@ -22,7 +24,7 @@ Solc.Compile = METHOD((m) => {
 			
 			solcWorker.send({
 				methodName : 'compile',
-				data : codes
+				data : params
 			}, (result) => {
 				if (result.contracts === undefined) {
 					errorHandler(result.errors[0]);
